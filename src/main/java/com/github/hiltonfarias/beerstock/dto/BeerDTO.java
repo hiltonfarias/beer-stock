@@ -37,5 +37,6 @@ public class BeerDTO {
     private Integer quantity;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private BeerType beerType;
 }

@@ -23,25 +23,24 @@ public class BeerController implements BeerControllerDocs {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Override
     public BeerDTO createBeer(@RequestBody @Valid BeerDTO beerDTO) throws BeerAlreadyRegisteredException {
         return beerService.createBeer(beerDTO);
     }
 
     @GetMapping("/{name}")
-    @Override
+    @ResponseStatus(HttpStatus.OK)
     public BeerDTO findByName(@PathVariable String name) throws BeerNotFoundException {
         return beerService.findByName(name);
     }
 
     @GetMapping
-    @Override
+    @ResponseStatus(HttpStatus.OK)
     public List<BeerDTO> listBeers() {
         return beerService.listAll();
     }
 
     @DeleteMapping("/{id}")
-    @Override
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) throws BeerNotFoundException {
         beerService.deleteById(id);
     }
@@ -49,7 +48,7 @@ public class BeerController implements BeerControllerDocs {
     @PatchMapping("/{id}/increment")
     public BeerDTO increment(
             @PathVariable Long id,
-            @RequestBody QuantityDTO quantityDTO
+            @RequestBody @Valid QuantityDTO quantityDTO
     ) throws BeerNotFoundException, BeerStockExceededException {
         return beerService.increment(id, quantityDTO.getQuantity());
     }
