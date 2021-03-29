@@ -35,7 +35,6 @@ public class BeerDTO {
 
     @NotNull
     @Max(100)
-    @Min(1)
     private Integer quantity;
 
     @Enumerated(EnumType.STRING)
